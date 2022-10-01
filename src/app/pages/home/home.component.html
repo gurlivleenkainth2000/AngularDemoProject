@@ -1,0 +1,72 @@
+<div class="container my-4">
+  <div class="row">
+    <div class="col-12 col-sm-6">
+      <h4 class="m-0">Products ({{products.length || 0}})</h4>
+    </div>
+    <div class="col-12 col-sm-6">
+      <button type="button" class="btn btn-dark btn-sm float-end" (click)="openProductModal(productModalRef)">Add Product</button>
+    </div>
+  </div>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mt-2">
+    <div class="col" *ngFor="let product of products; index as idx">
+      <div class="card shadow-sm">
+        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+          role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+            dy=".3em">Thumbnail</text>
+        </svg>
+
+        <div class="card-body">
+          <h4 class="card-title">{{ product.name }}</h4>
+          <h6 class="card-subtitle">{{ product.prdCode }}</h6>
+          <p class="card-text mt-3 text-limit">{{ product.description }}</p>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+            </div>
+            <small class="text-muted">9 mins</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #productModalRef let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Product Details</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm)">
+    <div class="modal-body">
+      <div class="mb-3">
+        <label for="prdCode" class="form-label">Product Code</label>
+        <input type="text" class="form-control" formControlName="prdCode" name="prdCode" id="prdCode">
+      </div>
+      <div class="mb-3">
+        <label for="name" class="form-label">Product Name</label>
+        <input type="text" class="form-control" formControlName="name" name="name" id="name">
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" class="form-control" formControlName="price" name="price" id="price">
+      </div>
+      <div class="mb-3">
+        <label for="inStock" class="form-label">In Stock Quantity</label>
+        <input type="text" class="form-control" formControlName="inStock" name="inStock" id="inStock">
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Product Description</label>
+        <textarea class="form-control" formControlName="description" name="description" id="description" rows="5"></textarea>
+        <!-- <input type="text" class="form-control" formControlName="prdCode" name="prdCode" id="prdCode"> -->
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+      <button type="submit" class="btn btn-outline-dark">Submit</button>
+    </div>
+  </form>
+</ng-template>
