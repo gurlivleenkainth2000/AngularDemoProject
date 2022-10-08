@@ -18,7 +18,9 @@
           </li>
         </ul>
 
-        <div class="d-flex justify-content-end gap-2">
+        <button *ngIf="authService.userModel !== null" type="button" class="btn btn-outline-dark"
+          (click)="authService.signoutCurrentUser()">Sign Out</button>
+        <div class="d-flex justify-content-end gap-2" *ngIf="authService.userModel === null">
           <button type="button" class="btn btn-outline-dark" routerLink="/login">Login</button>
           <button type="button" class="btn btn-outline-dark" routerLink="/register">Register</button>
         </div>

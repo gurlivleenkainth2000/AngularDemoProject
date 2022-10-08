@@ -14,6 +14,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { Error404Component } from './pages/error404/error404.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { Error404Component } from './pages/error404/error404.component';
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage())
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
